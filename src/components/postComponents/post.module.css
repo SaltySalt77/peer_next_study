@@ -1,0 +1,38 @@
+.postHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.postHeadText {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: baseline;
+  /* background-color: white; */
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  width: 50%;
+  border-top: 1px rgba(0, 0, 0, 0.2) solid;
+  background-color: white;
+
+  margin: 4px 0 4px;
+}
+
+.postBody {
+  margin: 8px 0;
+}
+
+.postBody b {
+  margin-right: 4px;
+}
+
+.postBody p {
+  display: inline;
+}
