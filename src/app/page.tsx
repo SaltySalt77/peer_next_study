@@ -1,95 +1,44 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+// import usePostsStore from "@/stores/usePostStore";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { IPostInfo } from "@/types/IPostInfo";
+import { useEffect } from "react";
+// import PostHead from "@/components/main/postHead";
+import Post from "@/components/postComponents/postMain";
+import TabBar from "./tabBar";
 
-export default function Home() {
+const MainThread: React.FC = () => {
+  const demoPost: IPostInfo = {
+    profileImageURL: "https://picsum.photos/100",
+    username: "hyna",
+    postImageURL: "https://picsum.photos/200",
+    text: "The pain itself is important, the education of the elitist will be followed, but it is the same time that they happen as a lot of work and pain. Ultricies leo whole malesuada now or laughter is good. Urna now that course is a fear some eleifend mi in. Life sapiens pellentesque inhabitant morbi tristique old age and grandchildren and. Now is the time for my football players.",
+    postID: "",
+    location: "Gangnam",
+  };
+
+  const postList: Array<IPostInfo> = [];
+  for (let i = 0; i < 15; i++) {
+    postList.push({ ...demoPost, postID: `${new Date().toISOString()}_${i}` });
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          flexDirection: "column",
+        }}
+      >
+        {postList.map((post) => (
+          <Post key={post.postID} {...post} />
+        ))}
       </div>
+      <TabBar defaultTab={0} />
+    </div>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default MainThread;
